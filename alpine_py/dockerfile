@@ -1,0 +1,18 @@
+FROM alpine:latest
+MAINTAINER lei fireflykind@gmail.com
+RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.2/main/" > /etc/apk/repositories
+RUN apk --update add bash
+RUN apk add gcc
+RUN apk add g++
+RUN apk add python
+RUN apk add python-dev
+RUN apk add py-pip
+RUN mkdir ~/.pip/
+RUN echo "[global]" > ~/.pip/pip.conf
+RUN echo "index-url = https://pypi.mirrors.ustc.edu.cn/simple" >> ~/.pip/pip.conf
+RUN pip install jupyter
+
+EXPOSE 8888
+VOLUME ["/data/notebooks"]
+
+CMD ["jupyter","notebook","--no-browser","--port=8888","--ip=0.0.0.0","--notebook-dir=/data/notebooks"]
