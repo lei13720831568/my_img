@@ -1,5 +1,5 @@
 FROM alpine:latest
 MAINTAINER lei fireflykind@gmail.com
-RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.2/main/" > /etc/apk/repositories
+RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.3/main/" > /etc/apk/repositories
 RUN apk --update add bash
-
+RUN rm -rf /var/cache/apk/* /tmp/* /root/src/

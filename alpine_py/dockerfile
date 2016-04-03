@@ -22,11 +22,15 @@ RUN pip install --upgrade pip
 RUN pip install -v numpy==1.9.0
 RUN pip install -v pandas==0.14.1
 
+RUN pip install requests
+
 RUN pip install jupyter
 
 RUN rm -rf /var/cache/apk/* /tmp/* /root/src/
 
 EXPOSE 8888
 VOLUME ["/data/notebooks"]
+COPY jupyterNoteBooks.sh /jupyterNoteBooks.sh
 
-CMD ["jupyter","notebook","--no-browser","--port=8888","--ip=0.0.0.0","--notebook-dir=/data/notebooks"]
+#use shell 
+CMD bash jupyterNoteBooks.sh
