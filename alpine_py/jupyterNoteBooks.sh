@@ -1,3 +1,2 @@
 #!/bin/bash
-
-jupyter notebook --no-browser --port=8888 --ip=0.0.0.0 --notebook-dir=/data/notebooks
+jupyter notebook --config=/jypyter_config.py --notebook-dir=/data/notebooks

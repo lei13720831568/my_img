@@ -10,6 +10,8 @@ RUN apk --update add bash
 RUN apk add gcc
 RUN apk add g++
 RUN apk add python python-dev py-pip gfortran build-base
+#RUN apk add freetype libpng
+#RUN apk add freetype-dev libpng-dev
 
 RUN mkdir ~/.pip/
 RUN echo "[global]" > ~/.pip/pip.conf
@@ -23,6 +25,8 @@ RUN pip install -v numpy==1.9.0
 RUN pip install -v pandas==0.14.1
 
 RUN pip install requests
+#RUN pip install Matplotlib
+#RUN pip install seaborn
 
 RUN pip install jupyter
 
@@ -31,6 +35,8 @@ RUN rm -rf /var/cache/apk/* /tmp/* /root/src/
 EXPOSE 8888
 VOLUME ["/data/notebooks"]
 COPY jupyterNoteBooks.sh /jupyterNoteBooks.sh
+COPY jypyter_config.py /jypyter_config.py
+COPY mycert.pem /mycert.pem
 
 #use shell 
 CMD bash jupyterNoteBooks.sh
