@@ -1,0 +1,10 @@
+FROM alpine:latest
+MAINTAINER lei fireflykind@gmail.com
+RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.3/main/" > /etc/apk/repositories
+RUN apk --update add bash redis && \
+    rm -rf /var/cache/apk/* /tmp/* /root/src/
+COPY redis.conf /redis.conf
+
+EXPOSE 6379
+VOLUME ["/redis"]
+CMD redis-server /redis.conf
